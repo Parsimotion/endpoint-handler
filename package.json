@@ -1,6 +1,6 @@
 {
   "name": "endpoint-handler",
-  "description": "Endpoint handler for Express",
+  "description": "Express error and response handler when using Promises",
   "repository": {
     "type": "git",
     "url": "git://github.com/Parsimotion/endpoint-handler.git"
