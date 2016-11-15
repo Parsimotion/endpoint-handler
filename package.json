@@ -1,0 +1,19 @@
+{
+  "name": "endpoint-handler",
+  "description": "Endpoint handler for Express",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Parsimotion/endpoint-handler.git"
+  },
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
