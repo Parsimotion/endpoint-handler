@@ -2,6 +2,12 @@
 
 Express error and response handler when using Promises.
 
+## install
+
+```
+npm install endpoint-handler --save
+```
+
 ## usage
 ```coffee
 express = require("express")
