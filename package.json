@@ -8,12 +8,10 @@
   "version": "1.0.0",
   "main": "src/main.js",
   "dependencies": {
-    "coffee-script": "^1.8.0",
-    "lodash": "^4.13.1"
+    "lodash": "^4.17.15"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6"
   }
 }
