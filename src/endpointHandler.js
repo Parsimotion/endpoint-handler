@@ -42,6 +42,6 @@ module.exports = (router) => {
       .mapValues(verb => _.partial(_route, verb))
       .value()
 
-  _.merge({ endpointHandler }, { route: verbs })
+  return _.merge({ endpointHandler }, { route: verbs })
 
 }
