@@ -13,7 +13,7 @@ const endpointHandler = (action) => (req, res, next) => {
     if (err.statusCode) {
       res.status(err.statusCode).send(err.error || err.body)
     } else {
-      res.status(500).send(err.stack || err)
+      res.status(500).send(err)
     }
   }
 
