@@ -24,7 +24,7 @@ const endpointHandler = (action) => (req, res, next) => {
     return _handleError(err)
   }
 
-  if (result.then) {
+  if (result && result.then) {
     result.then(_respond).catch(_handleError)
   }
 
