@@ -1,0 +1,59 @@
+# Node
+node_modules/
+
+# ========================
+# Archivos de configuración del proyecto
+# ========================
+.env
+.env.*
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ========================
+# Archivos de sistema
+# ========================
+*.orig
+*.rej
+*.swn
+*.swo
+*.swn
+*.swm
+*.swx
+*.swy
+*.bak
+*.tmp
+
+# ========================
+# Archivos de tests
+# ========================
+coverage/
+__tests__/
+*.spec.js
+*.test.js
+*.spec.ts
+*.test.ts
+jest.config.js
+jest.setup.js
+
+# ========================
+# Configuración de CI/CD u otras herramientas
+# ========================
+.github/
+.gitlab/
+.husky/
+commitlint.config.js
+.gitattributes
+.gitignore
+.editorconfig
+.npmrc
+.prettierrc
+.prettierignore
+.eslintrc
+.eslintignore
+.stylelintrc
+.stylelintignore
+
+# Ignora también este archivo
+.npmignore
