@@ -3,4 +3,3 @@ node_modules/
 .idea
 *.sublime-workspace
 npm-debug.log
-package-lock.json
