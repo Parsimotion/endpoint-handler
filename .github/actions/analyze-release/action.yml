@@ -21,11 +21,20 @@ runs:
     - name: Get latest tag
       id: get_tag
       run: |
-        TAG=$(git describe --tags --abbrev=0 || echo "0.0.0")
-        echo "last_tag=$TAG" >> $GITHUB_OUTPUT
+        TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+        if [ -z "$TAG" ]; then
+          echo "No tag found, assuming first release"
+          echo "found_tag=false" >> $GITHUB_OUTPUT
+          echo "last_tag=0.0.0" >> $GITHUB_OUTPUT
+        else
+          echo "Found tag: $TAG"
+          echo "found_tag=true" >> $GITHUB_OUTPUT
+          echo "last_tag=$TAG" >> $GITHUB_OUTPUT
+        fi
       shell: bash
 
     - name: Print commits
+      if: steps.get_tag.outputs.found_tag == 'true'
       run: git log ${{ steps.get_tag.outputs.last_tag }}..HEAD --pretty=format:"%H %s"
       shell: bash
 
@@ -37,15 +46,22 @@ runs:
     - name: Run analyze-bump.js
       id: bump
       run: |
-        BUMP=$(FROM_TAG="${{ steps.get_tag.outputs.last_tag }}" node ${{ github.action_path }}/analyze-bump.js | grep '^Determined bump' | sed 's/^Determined bump: //')
-        echo "bump=$BUMP" >> $GITHUB_OUTPUT
+        if [ "${{ steps.get_tag.outputs.found_tag }}" == "false" ]; then
+          echo "bump=first_release" >> $GITHUB_OUTPUT
+        else
+          BUMP=$(FROM_TAG="${{ steps.get_tag.outputs.last_tag }}" node ${{ github.action_path }}/analyze-bump.js | grep '^Determined bump' | sed 's/^Determined bump: //')
+          echo "bump=$BUMP" >> $GITHUB_OUTPUT
+        fi
       shell: bash
 
     - name: Calculate next version
       id: version
       if: steps.bump.outputs.bump != ''
       run: |
-        npm install semver
-        VERSION=$(npx semver "${{ steps.get_tag.outputs.last_tag }}" -i "${{ steps.bump.outputs.bump }}")
-        echo "next_version=$VERSION" >> $GITHUB_OUTPUT
+        if [ "${{ steps.get_tag.outputs.found_tag }}" == "false" ]; then
+          echo "next_version=1.0.0" >> $GITHUB_OUTPUT
+        else
+          VERSION=$(npx --yes --package semver semver "${{ steps.get_tag.outputs.last_tag }}" -i "${{ steps.bump.outputs.bump }}")
+          echo "next_version=$VERSION" >> $GITHUB_OUTPUT
+        fi
       shell: bash
