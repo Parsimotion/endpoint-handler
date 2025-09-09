@@ -19,6 +19,7 @@ jobs:
     with:
       prereleaseTag: ${{ inputs.prereleaseTag }}
       build: false
+      node-version: "18"
     secrets:
       NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
     permissions:
