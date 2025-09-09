@@ -21,7 +21,7 @@ jobs:
 
       - name: Get next version to release
         id: pre-version
-        uses: ./.github/actions/analyze-release
+        uses: Parsimotion/public-workflows/.github/actions/analyze-release@main
 
       - name: Comment on PR with bump info
         if: steps.pre-version.outputs.bump != ''

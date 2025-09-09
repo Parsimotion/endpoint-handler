@@ -1,1 +1,1 @@
-npx --no -- commitlint --edit 
+npx linterteca-commitlint --edit $1
