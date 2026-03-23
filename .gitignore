@@ -4,3 +4,7 @@ node_modules/
 *.sublime-workspace
 npm-debug.log
 package-lock.json
+
+site.config
+*.env
+*.env.*
