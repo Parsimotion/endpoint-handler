@@ -22,6 +22,19 @@ route.put "/", controller.update
 
 module.exports = router
 ```
+```js
+const express = require("express")
+const controller = require("./controller")
+const router = express.Router()
+const { route } = require("endpoint-handler")(router)
+
+// router.use(<<middleware>>)
+
+route.get("/", controller.get)
+route.put("/", controller.update)
+
+module.exports = router
+```
 
 ## features
 - if you return a successful `Promise`, it responds a 200 code with the json.
